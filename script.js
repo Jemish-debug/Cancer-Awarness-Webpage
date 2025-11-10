@@ -1,32 +1,31 @@
 const quoteText = document.getElementById("quote");
 const btn = document.getElementById("new-quote");
 
-async function fetchQuote() {
-  quoteText.style.opacity = 0;        // fade out
-  btn.disabled = true;
-  quoteText.innerText = "Loading...";
+// Fetch from your own public GitHub raw file
+const QUOTES_URL = "https://raw.githubusercontent.com/jemish-debug/Cancer-Awarness-Webpage/main/quotes.json";
 
+let quotes = [];
+
+async function loadQuotes() {
   try {
-    const apiURL = "https://zenquotes.io/api/random";
-    const proxyURL = "https://api.allorigins.win/raw?url=" + encodeURIComponent(apiURL);
-
-    const response = await fetch(proxyURL);
-    const text = await response.text();
-    const data = JSON.parse(text);
-
-    setTimeout(() => {
-      quoteText.innerText = `"${data[0].q}" — ${data[0].a}`;
-      quoteText.style.opacity = 1;    // fade in
-    }, 200);
-
+    const res = await fetch(QUOTES_URL);
+    quotes = await res.json();
+    showQuote();
   } catch (error) {
-    console.error(error);
-    quoteText.innerText = "Couldn't load quote. Please try again.";
-    quoteText.style.opacity = 1;
+    quoteText.innerText = "Unable to load quotes.";
   }
-
-  btn.disabled = false;
 }
 
-btn.addEventListener("click", fetchQuote);
-fetchQuote();
+function showQuote() {
+  quoteText.style.opacity = 0;
+
+  const random = quotes[Math.floor(Math.random() * quotes.length)];
+
+  setTimeout(() => {
+    quoteText.innerText = `"${random.q}" — ${random.a}`;
+    quoteText.style.opacity = 1;
+  }, 200);
+}
+
+btn.addEventListener("click", showQuote);
+loadQuotes();
