@@ -15,18 +15,22 @@ body {
 .hero {
   position: relative;
   height: 65vh;
-  background: url('banner.jpeg') center/cover no-repeat;
+  background:
+    url('banner.jpg') center/cover no-repeat,
+    linear-gradient(135deg, #ff9fcf 0%, #ffa6bf 50%, #ffbdd3 100%); /* fallback */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Soft pink tint to unify the banner + theme */
 .overlay {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.35);
+  inset: 0;
+  background: rgba(255, 168, 194, 0.55);
+  backdrop-filter: brightness(1.08);
 }
+
 .hero-content {
   position: relative;
   text-align: center;
@@ -35,14 +39,16 @@ body {
 .hero-content h1 {
   font-size: 3rem;
   font-weight: 600;
-  color: #b10058;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  color: #7b0038;
+  text-shadow: 0 2px 4px rgba(255,255,255,0.6);
 }
+
 .hero-content p {
   font-size: 1.15rem;
   margin-top: 10px;
-  color: #6a0040;
+  color: #5e0040;
 }
+
 
 /* SECTIONS */
 .section {
@@ -154,13 +160,14 @@ footer {
 
 /* ANIMATIONS */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
+    from {opacity: 0; transform: translateY(15px);}
+    to {opacity: 1; transform: translateY(0);}
 }
 
 /* MOBILE RESPONSIVE */
 @media(max-width:600px){
-  .hero-content h1 { font-size: 2.4rem; }
-  .section { padding: 40px 15px; }
-  footer { font-size: 0.85rem; }
+    .hero {background-position: center 35%;}
+    .hero-content h1 {font-size: 2.4rem;}
+    .section {padding: 40px 15px;}
+    footer {font-size: 0.85rem;}
 }
