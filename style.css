@@ -11,7 +11,7 @@ body {
   line-height: 1.6;
 }
 
-/* HERO */
+/* HERO SECTION */
 .hero {
   position: relative;
   height: 65vh;
@@ -35,6 +35,7 @@ body {
   font-size: 3rem;
   font-weight: 600;
   color: #b10058;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 .hero-content p {
   font-size: 1.15rem;
@@ -66,10 +67,15 @@ body {
   border-left: 5px solid #d2006b;
   box-shadow: 0 4px 15px rgba(0,0,0,0.08);
   font-style: italic;
-  transition: transform 0.3s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 .quote-box:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+#quote {
+  transition: opacity 0.35s ease;
 }
 
 #new-quote {
@@ -81,9 +87,12 @@ body {
   cursor: pointer;
   border-radius: 6px;
   font-weight: 600;
-  transition: 0.3s;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
-#new-quote:hover { background: #a80054; }
+#new-quote:hover {
+  background: #a80054;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
 
 /* CONTACT FORM */
 .contact form {
@@ -93,6 +102,7 @@ body {
   padding: 35px;
   border-radius: 14px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+  animation: fadeIn 1.2s ease-in-out;
 }
 .contact input,
 .contact textarea {
@@ -103,6 +113,10 @@ body {
   border-radius: 8px;
   background: #fffaff;
   transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+.contact input::placeholder,
+.contact textarea::placeholder {
+  color: #777;
 }
 .contact input:focus,
 .contact textarea:focus {
@@ -121,7 +135,10 @@ body {
   font-weight: 600;
   transition: 0.3s ease;
 }
-.contact button:hover { background: #b10058; }
+.contact button:hover {
+  background: #b10058;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+}
 
 /* FOOTER */
 footer {
@@ -129,9 +146,9 @@ footer {
   padding: 25px;
   background: #ffe5ef;
   color: #7a0050;
-  margin-top: 40px;
-  font-size: 0.9rem;
-  letter-spacing: 0.3px;
+  margin-top: 50px;
+  font-size: 0.95rem;
+  letter-spacing: 0.4px;
 }
 
 /* ANIMATIONS */
@@ -140,7 +157,9 @@ footer {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* MOBILE */
+/* MOBILE RESPONSIVE */
 @media(max-width:600px){
-  .hero-content h1 { font-size: 2.3rem; }
+  .hero-content h1 { font-size: 2.4rem; }
+  .section { padding: 40px 15px; }
+  footer { font-size: 0.85rem; }
 }
